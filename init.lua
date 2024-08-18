@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
+vim.opt.guifont = "0xProto Nerd Font Mono"
 
 require("config.core")
 
@@ -23,12 +24,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	-- Includes:
-	-- git, telescope, tokyonight
-	-- lspconfig, formatting, completions
-	-- which_key, todo, mini
 	{ import = "config.plugins" },
-
 	-- require 'kickstart.plugins.debug',
 	-- require 'kickstart.plugins.indent_line',
 	-- require 'kickstart.plugins.lint',

@@ -174,6 +174,8 @@ return { -- LSP Configuration & Plugins
 
 			clangd = {},
 			pyright = {},
+			markdownlint = {},
+			elixirls = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},

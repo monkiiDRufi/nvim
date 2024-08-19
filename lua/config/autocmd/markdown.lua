@@ -18,7 +18,7 @@ local function extension(filename)
 end
 
 local function compileToHtml()
-	local directoryFullPath = vim.fn.expand("%:p:h") .. "\\"
+	local directoryFullPath = vim.fn.expand("%:p:h") .. "/"
 	local markdownFile = vim.fn.expand("%:t")
 	if extension(markdownFile) ~= "md" then
 		return ':error("Current file is not a markdown file!")'
@@ -29,7 +29,7 @@ local function compileToHtml()
 end
 
 local function compileToPdf()
-	local directoryFullPath = vim.fn.expand("%:p:h") .. "\\"
+	local directoryFullPath = vim.fn.expand("%:p:h") .. "/"
 	local markdownFile = vim.fn.expand("%:t")
 	if extension(markdownFile) ~= "md" then
 		return ':error("Current file is not a markdown file!")'
@@ -37,7 +37,7 @@ local function compileToPdf()
 	local inputFile = directoryFullPath .. markdownFile
 	local outputFile = directoryFullPath .. name(markdownFile) .. ".pdf"
 	return string.format(
-		":!pandoc %s -o %s -V colorlinks=true <CR>", --, -V linkcolor=blue -V urlcolor=red -V toccolor=gray <CR>",
+		":!pandoc %s -o %s -V colorlinks=true -V block-headings <CR>", --, -V linkcolor=blue -V urlcolor=red -V toccolor=gray <CR>",
 		inputFile,
 		outputFile
 	)

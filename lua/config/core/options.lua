@@ -16,4 +16,8 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
-vim.opt.scrolloff = 10
+-- vim.opt.scrolloff = 10
+
+vim.g.tabstop = 4
+vim.g.shiftwidth = 4
+vim.g.expandtab = true

@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
-vim.opt.guifont = "0xProto Nerd Font Mono"
 
 require("config.core")
 require("config.autocmd")

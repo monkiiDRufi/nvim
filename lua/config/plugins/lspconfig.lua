@@ -173,20 +173,40 @@ return { -- LSP Configuration & Plugins
 			--
 
 			clangd = {},
-			pyright = {},
+			pylsp = {
+				settings = {
+					pylsp = {
+						plugins = {
+							-- formatter options
+							black = { enabled = true },
+							autopep8 = { enabled = false },
+							yapf = { enabled = false },
+							-- linter options
+							flake8 = { enabled = true },
+							pyflakes = { enabled = false },
+							pycodestyle = { enabled = false },
+							-- type checker
+							pylsp_mypy = { enabled = true },
+							-- code complexity
+							mccabe = { enabled = true },
+							-- auto-completion options
+							jedi_completion = { fuzzy = true },
+							-- import sorting
+							pyls_isort = { enabled = true },
+						},
+					},
+				},
+				flags = {
+					debounce_text_changes = 200,
+				},
+			},
 			markdownlint = {},
-			elixirls = {},
 			lua_ls = {
-				-- cmd = {...},
-				-- filetypes = { ...},
-				-- capabilities = {},
 				settings = {
 					Lua = {
 						completion = {
 							callSnippet = "Replace",
 						},
-						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-						-- diagnostics = { disable = { 'missing-fields' } },
 					},
 				},
 			},
@@ -222,3 +242,4 @@ return { -- LSP Configuration & Plugins
 		})
 	end,
 }
+-- vim: ts=2 sw=2 et

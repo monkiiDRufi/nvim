@@ -173,33 +173,61 @@ return { -- LSP Configuration & Plugins
 			--
 
 			clangd = {},
-			pylsp = {
-				settings = {
-					pylsp = {
-						plugins = {
-							-- formatter options
-							black = { enabled = true },
-							autopep8 = { enabled = false },
-							yapf = { enabled = false },
-							-- linter options
-							flake8 = { enabled = true },
-							pyflakes = { enabled = false },
-							pycodestyle = { enabled = false },
-							-- type checker
-							pylsp_mypy = { enabled = true },
-							-- code complexity
-							mccabe = { enabled = true },
-							-- auto-completion options
-							jedi_completion = { fuzzy = true },
-							-- import sorting
-							pyls_isort = { enabled = true },
+			-- Apparently works like a charm, not sure if its faster than pyright.
+			-- At least it doesn't have linters, so I could pair it with my flake8 working setup.
+			jedi_language_server = {
+				init_options = {
+					workspace = {
+						extraPaths = {
+							"./beta/vendors",
 						},
 					},
-				},
-				flags = {
-					debounce_text_changes = 200,
+					diagnostics = {
+						enable = true,
+					},
 				},
 			},
+			-- Good, note that it takes some time to start up but later on goes fast.
+			-- pyright = {
+			-- 	settings = {
+			-- 		python = {
+			-- 			analysis = {
+			-- 				autoSearchPaths = true,
+			-- 				useLibraryCodeForTypes = true,
+			-- 				diagnosticMode = "openFilesOnly",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
+
+			-- It works, but I experienced some lag and hanged lsp processes
+			-- pylsp = {
+			-- 	settings = {
+			-- 		pylsp = {
+			-- 			plugins = {
+			-- 				-- formatter options
+			-- 				black = { enabled = true },
+			-- 				autopep8 = { enabled = false },
+			-- 				yapf = { enabled = false },
+			-- 				-- linter options
+			-- 				flake8 = { enabled = true },
+			-- 				pyflakes = { enabled = false },
+			-- 				pycodestyle = { enabled = false },
+			-- 				-- type checker
+			-- 				pylsp_mypy = { enabled = true },
+			-- 				-- code complexity
+			-- 				mccabe = { enabled = true },
+			-- 				-- auto-completion options
+			-- 				jedi_completion = { fuzzy = true },
+			-- 				-- import sorting
+			-- 				pyls_isort = { enabled = true },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	flags = {
+			-- 		debounce_text_changes = 200,
+			-- 	},
+			-- },
 			markdownlint = {},
 			lua_ls = {
 				settings = {
@@ -225,6 +253,8 @@ return { -- LSP Configuration & Plugins
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
+			"jedi_language_server",
+			-- "pyright",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

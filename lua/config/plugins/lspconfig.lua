@@ -178,9 +178,7 @@ return { -- LSP Configuration & Plugins
 			jedi_language_server = {
 				init_options = {
 					workspace = {
-						extraPaths = {
-							"./beta/vendors",
-						},
+						extraPaths = {},
 					},
 					diagnostics = {
 						enable = true,

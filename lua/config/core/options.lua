@@ -4,7 +4,7 @@ vim.opt.mouse = "a"
 vim.opt.showmode = false
 
 -- testing without clip, use "*P, maybe a shortcut you know
--- vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.breakindent = true
 vim.opt.undofile = true

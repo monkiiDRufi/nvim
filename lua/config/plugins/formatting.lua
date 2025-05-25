@@ -13,20 +13,37 @@ return { -- Autoformat
 		},
 	},
 	opts = {
-		notify_on_error = false,
-		format_on_save = function(bufnr)
-			-- Disable "format_on_save lsp_fallback" for languages that don't
-			-- have a well standardized coding style. You can add additional
-			-- languages here or re-enable it for the disabled ones.
-			local disable_filetypes = { c = true, cpp = true }
-			return {
-				timeout_ms = 500,
-				lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-			}
-		end,
+		notify_on_error = true,
+		format_on_save = {
+			timeout = 500,
+			lsp_fallback = "fallback",
+		},
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "isort", "black" },
+		},
+		formatters = {
+			isort = {
+				include_trailing_comma = true,
+				command = "isort",
+				args = {
+					"--line-length",
+					"99",
+					"--lines-after-import",
+					"2",
+					"--quiet",
+					"-",
+				},
+			},
+			black = {
+				command = "black",
+				args = {
+					"--line-length",
+					"99",
+					"--quiet",
+					"-",
+				},
+			},
 		},
 	},
 }

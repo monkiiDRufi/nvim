@@ -252,6 +252,7 @@ return { -- LSP Configuration & Plugins
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
 			"jedi_language_server",
+			"marksman",
 			-- "pyright",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

@@ -75,10 +75,7 @@ return {
 			clangd = {},
 			ruff = {
 				init_options = {
-					settings = {
-						lineLength = 100,
-						preview = true,
-					},
+					configuration = "C:/users/ruben/Documents/ruff.toml",
 				},
 			},
 			markdownlint = {},
@@ -97,10 +94,9 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
-			"jedi_language_server",
+			"clangd",
 			"marksman",
 			"ruff",
-			-- "pyright",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

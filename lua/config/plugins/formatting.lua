@@ -20,30 +20,7 @@ return { -- Autoformat
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "black" },
-		},
-		formatters = {
-			isort = {
-				include_trailing_comma = true,
-				command = "isort",
-				args = {
-					"--line-length",
-					"99",
-					"--lines-after-import",
-					"2",
-					"--quiet",
-					"-",
-				},
-			},
-			black = {
-				command = "black",
-				args = {
-					"--line-length",
-					"99",
-					"--quiet",
-					"-",
-				},
-			},
+			python = { "ruff_format" },
 		},
 	},
 }

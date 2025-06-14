@@ -1,20 +1,22 @@
 M = {}
 
-local function print_dependency(name)
-	print(string.format("%-15s %5s", name, "✅"))
+local function print_dependency(name, installed, error)
+	local emoji = installed and "✅" or "❌"
+	print(string.format("%-15s %5s", name, emoji))
+	if error ~= nil then
+		print(error)
+	end
 end
 
 function M._installLazy()
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not vim.uv.fs_stat(lazypath) then
+		print("Installing Lazy...")
 		local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 		local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 		if vim.v.shell_error ~= 0 then
 			error("Error cloning lazy.nvim:\n" .. out)
 		end
-		print_dependency("Lazy installed")
-	else
-		print_dependency("Lazy")
 	end ---@diagnostic disable-next-line: undefined-field
 	vim.opt.rtp:prepend(lazypath)
 end
@@ -31,13 +33,22 @@ function M._installTreeSitter()
 	if string.find(path, msvsBinPath) == nil then
 		error(msvsBinPath .. " is not in PATH")
 	end
+end
 
-	print_dependency("Treesitter")
+function M._installTelescope()
+	error("not installed")
 end
 
 function M.install()
-	M._installLazy()
-	M._installTreeSitter()
+	local dependencies = {
+		Lazy = M._installLazy,
+		Treesitter = M._installTreeSitter,
+		Telescope = M._installTelescope,
+	}
+	for dependency, installationFunction in pairs(dependencies) do
+		local installed, error = pcall(installationFunction)
+		print_dependency(dependency, installed, error)
+	end
 end
 
 return M

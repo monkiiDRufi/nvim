@@ -29,7 +29,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			},
 		})
 
-		pcall(require("telescope").load_extension, "fzf")
+		-- pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 
 		local builtin = require("telescope.builtin")

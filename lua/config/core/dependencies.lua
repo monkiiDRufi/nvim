@@ -36,7 +36,14 @@ function M._installTreeSitter()
 end
 
 function M._installTelescope()
-	error("not installed")
+	local compiler = vim.fn.executable("cmake") or vim.fn.executable("make")
+	if not compiler then
+		error("Not able to find a valid compiler: cmake/make")
+	end
+	local fzf = vim.fn.executable("fzf")
+	if not fzf then
+		error("Fzf is not installed")
+	end
 end
 
 function M.install()

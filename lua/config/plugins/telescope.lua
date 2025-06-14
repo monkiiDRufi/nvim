@@ -6,10 +6,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		"nvim-lua/plenary.nvim",
 		{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-			cond = function()
-				return vim.fn.executable("make") == 1
-			end,
+			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
@@ -29,7 +26,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			},
 		})
 
-		-- pcall(require("telescope").load_extension, "fzf")
+		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 
 		local builtin = require("telescope.builtin")

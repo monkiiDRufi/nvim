@@ -21,7 +21,7 @@ function M._installLazy()
 	vim.opt.rtp:prepend(lazypath)
 end
 
-function M._installTreeSitter()
+function M._validateTreesitter()
 	-- Test if this works, then assert path exists
 	local msvsBinPath = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\Llvm\\x64\\bin"
 	local clangPath = msvsBinPath .. "/clang.exe"
@@ -35,13 +35,19 @@ function M._installTreeSitter()
 	end
 end
 
-function M._installTelescope()
-	local compiler = vim.fn.executable("cmake") or vim.fn.executable("make")
-	if not compiler then
-		error("Not able to find a valid compiler: cmake/make")
+function M._validateTelescope()
+	local COMPILERS = { "gcc", "clang", "make", "cmake" }
+	local hasCompiler = false
+	for _, compiler in ipairs(COMPILERS) do
+		if vim.fn.executable(compiler) then
+			hasCompiler = true
+		end
 	end
-	local fzf = vim.fn.executable("fzf")
-	if not fzf then
+
+	if not hasCompiler then
+		error("Not able to find a valid compiler: " .. vim.inspect(COMPILERS))
+	end
+	if not vim.fn.executable("fzf") then
 		error("Fzf is not installed")
 	end
 end
@@ -49,8 +55,8 @@ end
 function M.install()
 	local dependencies = {
 		Lazy = M._installLazy,
-		Treesitter = M._installTreeSitter,
-		Telescope = M._installTelescope,
+		Treesitter = M._validateTreesitter,
+		Telescope = M._validateTelescope,
 	}
 	for dependency, installationFunction in pairs(dependencies) do
 		local installed, error = pcall(installationFunction)

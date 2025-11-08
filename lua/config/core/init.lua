@@ -1,8 +1,7 @@
-local M = {}
-
-M.options = require("config.core.options")
-M.dependencies = require("config.core.dependencies")
-M.keymaps = require("config.core.keymaps")
-M.fontsize = require("config.core.fontsize")
-
-return M
+return {
+	options = require("config.core.options"),
+	dependencies = require("config.core.dependencies"),
+	keymaps = require("config.core.keymaps"),
+	fontsize = require("config.core.fontsize"),
+	format = require("config.core.format"),
+}

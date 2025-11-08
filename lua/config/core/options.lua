@@ -29,5 +29,12 @@ vim.o.inccommand = "split"
 vim.o.splitright = true
 vim.o.splitbelow = true
 
-
-vim.o.path=".,**"
+vim.opt.path = {
+    ".",
+    "AppData/Local/nvim/lua/**",
+    "Documents/101_programming/python/**",
+}
+vim.opt.wildignore = {
+    "**/__pycache__/*",
+    "**/node_modules/*",
+}

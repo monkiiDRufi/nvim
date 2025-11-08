@@ -6,13 +6,13 @@
   - Note: installation still through mason.
 - search mappings
   - [X] remove telescope
-  - [ ] path: progresively add a whitelist
-  - [ ] wildignore
+  - [X] path: progresively add a whitelist
+  - [X] wildignore
   - [ ] explorer list of commonly visited locations
   - [ ] automarks
-  - [ ] files
-  - [ ] vimgrep
-- customize vim statusline
+  - [X] files
+  - [X] vimgrep
+- [ ] customize vim statusline
 
 ## Autocomands
 

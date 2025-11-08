@@ -9,8 +9,8 @@ vim.opt.path = {
 	".",
 	project_root .. "/tools",
 	project_root .. "/pinattsu",
-	project_root .. "/**",
-	config_root .. "/**",
+	project_root, project_root .. "/**",
+	config_root, config_root .. "/**",
 }
 vim.opt.wildignore = {
 	".git/*",

@@ -28,3 +28,6 @@ vim.o.listchars = "tab:> ,trail:-,nbsp:+"
 vim.o.inccommand = "split"
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+
+vim.o.path=".,**"

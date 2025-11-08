@@ -7,7 +7,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
-vim.o.showmode = false
+vim.o.showmode = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.undofile = true
@@ -20,7 +20,7 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.breakindent = true
 
-vim.o.signcolumn = "yes"
+vim.o.signcolumn = "auto"
 vim.o.cursorline = true
 vim.o.colorcolumn = "100"
 vim.o.list = true

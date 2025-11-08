@@ -9,7 +9,7 @@
   - [X] path: progresively add a whitelist
   - [X] wildignore
   - [ ] explorer list of commonly visited locations
-  - [ ] automarks
+  - [X] automarks
   - [X] files
   - [X] vimgrep
 - [ ] customize vim statusline

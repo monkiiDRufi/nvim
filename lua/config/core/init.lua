@@ -4,4 +4,5 @@ return {
 	keymaps = require("config.core.keymaps"),
 	fontsize = require("config.core.fontsize"),
 	format = require("config.core.format"),
+	finder = require("config.core.finder"),
 }

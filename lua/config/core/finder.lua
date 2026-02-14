@@ -1,5 +1,4 @@
 vim.opt.wildmenu = true
-vim.opt.autochdir = true
 
 local home = vim.fn.expand("~")
 local project_root = home .. "/Documents/101_programming/python"

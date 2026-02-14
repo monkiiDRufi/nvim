@@ -2,7 +2,8 @@ vim.opt.wildmenu = true
 
 local home = vim.fn.expand("~")
 local python_scripts = home .. "/Documents/101_programming/python"
-local nvim_config = home .. "/AppData/Local/nvim"
+-- local nvim_config = home .. "/AppData/Local/nvim"
+local nvim_config = vim.fn.stdpath('config')
 
 vim.opt.path = {
 	".",

@@ -12,13 +12,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
     end,
 })
 
-vim.api.nvim_create_autocmd('BufEnter', {
-    pattern = '*.cs',
-    callback = function()
-        vim.lsp.enable('csharp_ls')
-    end,
-})
-
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('LspOnAttach', {}),
     callback = function(args)

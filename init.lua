@@ -1,7 +1,20 @@
-require("config.core").dependencies.install()
-require("config.autocmd")
+require("config.core.options")
+require("config.core.dependencies").install()
+require("config.core.keymaps")
+require("config.core.fontsize")
+require("config.core.format")
+require("config.core.finder")
+
+require("config.autocmd.miscelanea")
+require("config.autocmd.lsp")
+require("config.autocmd.marks")
+
 require("lazy").setup({
-    { import = "config.plugins" }
+    { import = "plugins.completions" },
+    { import = "plugins.git" },
+    { import = "plugins.gruvbox" },
+    { import = "plugins.lspconfig" },
+    { import = "plugins.treesitter" },
 })
 
 vim.cmd([[colorscheme gruvbox]])

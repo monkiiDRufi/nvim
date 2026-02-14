@@ -1,3 +1,4 @@
+local default_config = require("luasnip.default_config")
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -5,7 +6,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		{ "j-hui/fidget.nvim", opts = {} },
+		{ "j-hui/fidget.nvim",       opts = {} },
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
@@ -36,6 +37,11 @@ return {
 					Lua = {
 						completion = {
 							callSnippet = "Replace",
+						},
+						format = {
+							default_config = {
+								columnWidth = 99,
+							},
 						},
 					},
 				},

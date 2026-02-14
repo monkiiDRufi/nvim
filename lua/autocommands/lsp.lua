@@ -31,12 +31,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
             end, { expr = true, buffer = args.buf })
         end
 
-        -- Completion on triggerCharacters
         if client:supports_method('textDocument/completion') then
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
         end
 
-        -- Format on save
         if not client:supports_method('textDocument/willSaveWaitUntil')
             and client:supports_method('textDocument/formatting') then
             vim.api.nvim_create_autocmd('BufWritePre', {

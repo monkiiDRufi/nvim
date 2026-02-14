@@ -10,11 +10,12 @@ require("config.autocmd.lsp")
 require("config.autocmd.marks")
 
 require("lazy").setup({
-    { import = "plugins.completions" },
-    { import = "plugins.git" },
-    { import = "plugins.gruvbox" },
-    { import = "plugins.lspconfig" },
-    { import = "plugins.treesitter" },
+	{ import = "plugins.completions" },
+	{ import = "plugins.git" },
+	{ import = "plugins.gruvbox" },
+	{ import = "plugins.lspconfig" },
+	{ import = "plugins.treesitter" },
+	{ import = "plugins.nvim_dap" },
 })
 
 vim.cmd([[colorscheme gruvbox]])

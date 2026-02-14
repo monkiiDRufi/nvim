@@ -17,6 +17,8 @@ require("lazy").setup({
 	{ import = "plugins.lspconfig" },
 	{ import = "plugins.treesitter" },
 	{ import = "plugins.nvim_dap" },
+	{ import = "plugins.lualine" },
+	{ import = "plugins.which_key" },
 })
 
 vim.cmd([[colorscheme tokyonight]])

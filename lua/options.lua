@@ -20,5 +20,7 @@ vim.o.listchars = "tab:> ,trail:.,nbsp:+"
 vim.o.confirm = true
 vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 
+vim.o.modeline = false
+
 vim.cmd('color default')
 vim.cmd("hi Normal guibg=None")

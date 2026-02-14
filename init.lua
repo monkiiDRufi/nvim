@@ -13,9 +13,10 @@ require("lazy").setup({
 	{ import = "plugins.completions" },
 	{ import = "plugins.git" },
 	{ import = "plugins.gruvbox" },
+	{ import = "plugins.tokyonight" },
 	{ import = "plugins.lspconfig" },
 	{ import = "plugins.treesitter" },
 	{ import = "plugins.nvim_dap" },
 })
 
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme tokyonight]])

@@ -1,4 +1,3 @@
-local default_config = require("luasnip.default_config")
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -30,7 +29,8 @@ return {
 					configuration = "C:/users/ruben/Documents/ruff.toml",
 				},
 			},
-			jedi_language_server = {},
+			basedpyright = {},
+			ts_ls = {},
 			marksman = {},
 			lua_ls = {
 				settings = {
@@ -60,7 +60,8 @@ return {
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
+					vim.lsp.enable(server_name)
+					vim.lsp.config(server_name, server)
 				end,
 			},
 		})

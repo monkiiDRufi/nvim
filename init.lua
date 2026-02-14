@@ -1,33 +1,21 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-vim.g.have_nerd_font = true
+require("config.core.options")
+require("config.core.dependencies").install()
+require("config.core.keymaps")
+require("config.core.fontsize")
+require("config.core.format")
+require("config.core.finder")
 
-local core = require("config.core")
-core.dependencies.install()
-
-require("config.autocmd")
+require("config.autocmd.miscelanea")
+require("config.autocmd.lsp")
+require("config.autocmd.marks")
 
 require("lazy").setup({
-	{ import = "config.plugins" },
-}, {
-	rocks = { enabled = false },
-	ui = {
-		-- If you are using a Nerd Font: set icons to an empty table which will use the
-		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-		icons = vim.g.have_nerd_font and {} or {
-			cmd = "⌘",
-			config = "🛠",
-			event = "📅",
-			ft = "📂",
-			init = "⚙",
-			keys = "🗝",
-			plugin = "🔌",
-			runtime = "💻",
-			require = "🌙",
-			source = "📄",
-			start = "🚀",
-			task = "📌",
-			lazy = "💤 ",
-		},
-	},
+	{ import = "plugins.completions" },
+	{ import = "plugins.git" },
+	{ import = "plugins.gruvbox" },
+	{ import = "plugins.lspconfig" },
+	{ import = "plugins.treesitter" },
+	{ import = "plugins.nvim_dap" },
 })
+
+vim.cmd([[colorscheme gruvbox]])

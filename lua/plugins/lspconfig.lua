@@ -1,22 +1,9 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+		{ "mason-org/mason.nvim", config = true },
 		"hrsh7th/cmp-nvim-lsp",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		{ "j-hui/fidget.nvim",       opts = {} },
-		{
-			"folke/lazydev.nvim",
-			ft = "lua",
-			opts = {
-				library = {
-					-- Load luvit types when the `vim.uv` word is found
-					{ path = "luvit-meta/library", words = { "vim%.uv" } },
-				},
-			},
-		},
-		{ "Bilal2453/luvit-meta", lazy = true },
+		{ "j-hui/fidget.nvim", opts = {} },
 	},
 	config = function()
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -35,35 +22,21 @@ return {
 			lua_ls = {
 				settings = {
 					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-						format = {
-							default_config = {
-								columnWidth = 99,
-							},
-						},
+						completion = { callSnippet = "Replace" },
+						diagnostics = { globals = { "vim" } },
+						workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
+						format = { default_config = { columnWidth = 99 } },
 					},
 				},
 			},
 		}
 
 		require("mason").setup()
-		local ensure_installed = vim.tbl_keys(servers or {})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					vim.lsp.enable(server_name)
-					vim.lsp.config(server_name, server)
-				end,
-			},
-		})
+		for name, server in pairs(servers) do
+			server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+			vim.lsp.config(name, server)
+			vim.lsp.enable(name)
+		end
 	end,
 }

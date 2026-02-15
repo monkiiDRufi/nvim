@@ -22,5 +22,5 @@ vim.opt.completeopt = { "menu", "menuone", "noinsert" }
 
 vim.o.modeline = false
 
-vim.cmd('color default')
+vim.cmd('color retrobox')
 vim.cmd("hi Normal guibg=None")

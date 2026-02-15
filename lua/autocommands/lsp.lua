@@ -1,9 +1,32 @@
+local browser = "zen"
+local make_open_md = function(file)
+    vim.cmd("make")
+    vim.fn.jobstart({ browser, file }, { detach = true })
+end
+
 vim.api.nvim_create_autocmd('BufEnter', {
     pattern = '*.md',
-    callback = function(event)
+    callback = function()
         vim.opt_local.wrap = true
-		vim.opt_local.linebreak = true
-		vim.opt_local.textwidth = 100
+        vim.opt_local.linebreak = true
+        vim.opt_local.textwidth = 100
+        vim.cmd("compiler markdown")
+
+        vim.keymap.set(
+            "n", "<leader>of", function()
+                vim.cmd("compiler markdown")
+                local pdf_file = vim.fn.expand("%:p:r") .. ".pdf"
+                make_open_md(pdf_file)
+            end,
+            { desc = "open markdown pdf", buffer = true }
+        )
+        vim.keymap.set(
+            "n", "<leader>on", function()
+                vim.cmd("compiler novel")
+                make_open_md("novel.pdf")
+            end, { desc = 'open novel', buffer = true }
+        )
+        vim.keymap.set("n", "<leader>b", "mplB2i*<Esc>E2a*<Esc>`p2l")
     end,
 })
 

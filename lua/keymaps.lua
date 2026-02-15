@@ -3,6 +3,5 @@ local nmap = function(keymap, action, opts)
 end
 
 nmap('<leader>e', function()
-    vim.cmd('silent Lex')
-    vim.cmd('vertical resize 40')
+    vim.cmd('20Lex')
 end, { desc = "File explorer" })

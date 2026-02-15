@@ -1,4 +1,14 @@
 vim.api.nvim_create_autocmd('BufEnter', {
+    pattern = '*.md',
+    callback = function(event)
+        vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.textwidth = 100
+    end,
+})
+
+
+vim.api.nvim_create_autocmd('BufEnter', {
     pattern = '*.lua',
     callback = function()
         vim.lsp.enable('lua_ls')

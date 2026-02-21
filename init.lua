@@ -22,3 +22,5 @@ require("lazy").setup({
 })
 
 vim.cmd([[colorscheme tokyonight]])
+-- vim.cmd([[hi Normal ctermbg=none guibg=none]])
+-- vim.cmd([[hi NonText ctermbg=none guibg=none]])
